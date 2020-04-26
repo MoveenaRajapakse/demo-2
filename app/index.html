@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--[if lt IE 7]>      <html lang="en" ng-app="EventList" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="EventList" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="EventList" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="EventList" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Event Organizer App</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">-->
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>-->
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <!--<script src="app/app.css"></script>-->
+
+</head>
+<body ng-app="EventList" >
+
+<br/>
+<div style="font-style: italic">
+<h2 align="center">Online Event Organizer</h2>
+</div>
+
+<div  ng-controller="MainController">
+
+  <div style="background-color: lightpink">
+    <h4 align="center">Select Date to Add Event</h4>
+    <div align="center">
+      <input style="margin: auto" id="calender1" type="date" ng-model="date"><br/><br/>
+    </div>
+    <h4 align="center">Selected date : <span ng-bind="date+1"></span></h4><br/>
+    <div align="center">
+      <h4>Select Date to View Events</h4>
+      <!--<input style="margin: auto" id="calender2" type="date" ng-model="Viewdate">-->
+      <button style="margin-left: 30px" class="btn btn-danger col-sm-1" ng-click="ViewEvent2()" >View</button>
+
+      <div ng-repeat="x in events| filter: date" style="margin-left: 60px" >
+        <li>
+        <!--<span style="margin-left: 10px" ng-bind="x.eedate +  x.sevent"></span>-->
+          {{events.eedate}}|{{events.sevent}}
+        </li>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="jumbotron" style="background-color: lightpink">
+    <div class="row">
+    
+    <input id="e" type="text" class="form-control form-control-lg col-sm-10" placeholder="Enter a Event" ng-model="addtoEvent">
+    <button type="button"  class="btn btn-danger col-sm-2" ng-click="addEvent()">Add Event</button>
+    </div>
+  </div>
+
+  <div ng-repeat="x in list" style="margin-left: 60px" >
+    <input type="checkbox" ng-model="x.done">
+     <span contenteditable="" style="margin-left: 10px" ng-bind="x.cdate +  x.Event" id="rr"></span>
+    <button type="button" class="btn btn-info" style="margin-left: 500px" ng-click="deleteEvent()">Delete</button>&nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-success" style="margin-top: 2px" ng-click="updateEvent(x.id)">Edit</button>
+
+  </div>
+
+</div>
+
+
+<script src="lib/angular/angular.js"></script>
+<script src="lib/angular-route/angular-route.js"></script>
+<script src="app.js"></script>
+<script src="controllers/MainController.js"></script>
+<script src="core/version/version.js"></script>
+<script src="core/version/version-directive.js"></script>
+<script src="core/version/interpolate-filter.js"></script>
+
+
+
+</body>
+</html>
